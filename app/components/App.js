@@ -273,7 +273,7 @@ export default class App extends React.Component {
                 </div>
                 <div className="d-flex justify-content-center">
                   <h3 className="text-secondary" align="middle">
-                    Select your Plafrom
+                    Select your Platfrom
                   </h3>
                 </div>
                 <div className="row">
