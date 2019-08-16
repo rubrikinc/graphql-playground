@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g>
+    <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="31.6222" y1="-1.1736" x2="97.1976" y2="64.4018">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+  
+    <path id="rk1" fill="url(#SVGID_1_)" d="M24.9896907,15.0857143 C24.5938144,15.477551 23.9505155,15.477551 23.5546392,15.0857143 L17.0226804,8.66938776 C16.6268041,8.27755102 16.6268041,7.64081633 17.0226804,7.24897959 L23.5051546,0.783673469 C23.9010309,0.391836735 24.5443299,0.391836735 24.9402062,0.783673469 L31.4226804,7.2 C31.8185567,7.59183673 31.8185567,8.22857143 31.4226804,8.62040816 L24.9896907,15.0857143 L24.9896907,15.0857143 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s"  fill="freeze" begin="rk16Show.end - 0.15s" id="rk1Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s"  fill="freeze" begin="rk16Hide.end - 0.15s" id="rk1Hide" />
+    </path>
+    <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="-1.174" y1="31.6225" x2="64.4014" y2="97.1979">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk2" fill="url(#SVGID_2_)" d="M41.2206186,31.1510204 C40.8247423,31.5428571 40.1814433,31.5428571 39.785567,31.1510204 L33.2536082,24.6857143 C32.857732,24.2938776 32.857732,23.6571429 33.2536082,23.2653061 L39.785567,16.8489796 C40.1814433,16.4571429 40.8247423,16.4571429 41.2206186,16.8489796 L47.7030928,23.2653061 C48.0989691,23.6571429 48.0989691,24.2938776 47.7030928,24.6857143 L41.2206186,31.1510204 L41.2206186,31.1510204 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s"  fill="freeze" begin="rk5Show.end - 0.15s"  id="rk2Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s"  fill="freeze" begin="rk5Hide.end - 0.15s"  id="rk2Hide" />
+    </path>
+    <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="31.6348" y1="-1.1863" x2="97.2102" y2="64.3891">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk3" fill="url(#SVGID_3_)" d="M24.9896907,47.2163265 C24.5938144,47.6081633 23.9505155,47.6081633 23.5546392,47.2163265 L17.0226804,40.8 C16.6268041,40.4081633 16.6268041,39.7714286 17.0226804,39.3795918 L23.5546392,32.9632653 C23.9505155,32.5714286 24.5938144,32.5714286 24.9896907,32.9632653 L31.4721649,39.3795918 C31.8680412,39.7714286 31.8680412,40.4081633 31.4721649,40.8 L24.9896907,47.2163265 L24.9896907,47.2163265 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s"  fill="freeze" begin="rk6Show.end - 0.15s"  id="rk3Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s"  fill="freeze" begin="rk6Hide.end - 0.15s"  id="rk3Hide" />
+    </path>
+    <linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="-14.0842" y1="44.5327" x2="51.4912" y2="110.1081">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk4" fill="url(#SVGID_4_)" d="M8.75876289,31.1510204 C8.3628866,31.5428571 7.71958763,31.5428571 7.32371134,31.1510204 L0.791752577,24.6857143 C0.395876289,24.2938776 0.395876289,23.6571429 0.791752577,23.2653061 L7.32371134,16.8489796 C7.71958763,16.4571429 8.3628866,16.4571429 8.75876289,16.8489796 L15.2412371,23.2653061 C15.6371134,23.6571429 15.6371134,24.2938776 15.2412371,24.6857143 L8.75876289,31.1510204 L8.75876289,31.1510204 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s"  fill="freeze" begin="rk7Show.end - 0.15s"  id="rk4Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s"  fill="freeze" begin="rk7Hide.end - 0.15s"  id="rk4Hide" />
+    </path>
+    <linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="4.0352" y1="26.4134" x2="69.6105" y2="91.9888">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk5" fill="url(#SVGID_5_)" d="M40.2804124,14.9387755 C40.2804124,15.477551 39.8350515,15.9673469 39.2412371,15.9673469 L33.4020619,15.9673469 C32.857732,15.9673469 32.3628866,15.5265306 32.3628866,14.9387755 L32.3628866,9.11020408 C32.3628866,8.57142857 32.8082474,8.08163265 33.4020619,8.08163265 L39.2907216,8.08163265 C39.8350515,8.08163265 40.3298969,8.52244898 40.3298969,9.11020408 L40.3298969,14.9387755 L40.2804124,14.9387755 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s"  fill="freeze" begin="rk1Show.end - 0.15s"  id="rk5Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s"  fill="freeze" begin="rk1Hide.end - 0.15s"  id="rk5Hide" />
+    </path>
+    <linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="15.2534" y1="15.1951" x2="80.8288" y2="80.7705">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk6" fill="url(#SVGID_6_)" d="M40.2804124,33.0612245 C40.2804124,32.522449 39.8350515,32.0326531 39.2412371,32.0326531 L33.4020619,32.0326531 C32.857732,32.0326531 32.3628866,32.4734694 32.3628866,33.0612245 L32.3628866,38.8408163 C32.3628866,39.3795918 32.8082474,39.8693878 33.4020619,39.8693878 L39.2907216,39.8693878 C39.8350515,39.8693878 40.3298969,39.4285714 40.3298969,38.8408163 L40.3298969,33.0612245 L40.2804124,33.0612245 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s"  fill="freeze" begin="rk2Show.end - 0.15s"  id="rk6Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s"  fill="freeze" begin="rk2Hide.end - 0.15s"  id="rk6Hide" />
+    </path>
+    <linearGradient id="SVGID_7_" gradientUnits="userSpaceOnUse" x1="44.579" y1="-14.1305" x2="110.1544" y2="51.4449">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk7" fill="url(#SVGID_7_)" d="M16.1319588,33.0612245 C16.1319588,32.522449 15.6865979,32.0326531 15.0927835,32.0326531 L9.20412371,32.0326531 C8.65979381,32.0326531 8.16494845,32.4734694 8.16494845,33.0612245 L8.16494845,38.8408163 C8.16494845,39.3795918 8.61030928,39.8693878 9.20412371,39.8693878 L15.0927835,39.8693878 C15.6371134,39.8693878 16.1319588,39.4285714 16.1319588,38.8408163 L16.1319588,33.0612245 L16.1319588,33.0612245 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s"  fill="freeze" begin="rk3Show.end - 0.15s"  id="rk7Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s"  fill="freeze" begin="rk3Hide.end - 0.15s"  id="rk7Hide" />
+    </path>
+    <linearGradient id="SVGID_8_" gradientUnits="userSpaceOnUse" x1="44.5727" y1="-14.1241" x2="110.1481" y2="51.4513">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk8" fill="url(#SVGID_8_)" d="M16.1319588,9.11020408 C16.1319588,8.57142857 15.6865979,8.08163265 15.0927835,8.08163265 L9.20412371,8.08163265 C8.65979381,8.08163265 8.16494845,8.52244898 8.16494845,9.11020408 L8.16494845,14.8897959 C8.16494845,15.4285714 8.61030928,15.9183673 9.20412371,15.9183673 L15.0927835,15.9183673 C15.6371134,15.9183673 16.1319588,15.477551 16.1319588,14.8897959 L16.1319588,9.11020408 L16.1319588,9.11020408 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s"  fill="freeze" begin="rk4Show.end - 0.15s"  id="rk8Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s"  fill="freeze" begin="rk4Hide.end - 0.15s"  id="rk8Hide" />
+    </path>
+    <linearGradient id="SVGID_9_" gradientUnits="userSpaceOnUse" x1="4.0127" y1="26.4359" x2="69.5881" y2="92.0113">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk9" fill="url(#SVGID_9_)" d="M36.0247423,4.2122449 C36.4206186,3.82040816 36.3216495,3.28163265 35.8268041,3.03673469 L33.3525773,1.86122449 C32.8082474,1.66530612 32.4123711,1.91020408 32.4123711,2.49795918 L32.4123711,6.80816327 C32.4123711,7.34693878 32.7587629,7.49387755 33.1546392,7.10204082 L36.0247423,4.2122449 L36.0247423,4.2122449 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s" fill="freeze" begin="0s; rk8Hide.end - 0.15s;"  id="rk9Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s" fill="freeze" begin="rk8Show.end - 0.15s"  id="rk9Hide" />
+    </path>
+    <linearGradient fill="url(#SVGID_10_)" gradientUnits="userSpaceOnUse" x1="15.2351" y1="15.2135" x2="80.8104" y2="80.7889">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk10" fill="url(#SVGID_10_)" d="M45.4762887,12.5387755 C45.228866,12.0489796 44.6845361,11.9510204 44.2886598,12.3428571 L41.4185567,15.1836735 C41.0226804,15.5755102 41.171134,15.9183673 41.7154639,15.9183673 L46.0206186,15.9183673 C46.5649485,15.9183673 46.8618557,15.477551 46.6639175,14.9877551 L45.4762887,12.5387755 L45.4762887,12.5387755 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s" fill="freeze" begin="rk9Show.end  - 0.15s"  id="rk10Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s" fill="freeze" begin="rk9Hide.end  - 0.15s"  id="rk10Hide" />
+    </path>
+    <linearGradient id="SVGID_11_" gradientUnits="userSpaceOnUse" x1="26.4533" y1="3.9952" x2="92.0287" y2="69.5706">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk11" fill="url(#SVGID_11_)" d="M46.6639175,32.9632653 C46.8618557,32.4244898 46.614433,32.0326531 46.0206186,32.0326531 L41.6659794,32.0326531 C41.1216495,32.0326531 40.9731959,32.3755102 41.3690722,32.7673469 L44.2391753,35.6081633 C44.6350515,36 45.1793814,35.9020408 45.4268041,35.4122449 L46.6639175,32.9632653 L46.6639175,32.9632653 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s" fill="freeze" begin="rk10Show.end - 0.15s" id="rk11Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s" fill="freeze" begin="rk10Hide.end - 0.15s" id="rk11Hide" />
+    </path>
+    <linearGradient id="SVGID_12_" gradientUnits="userSpaceOnUse" x1="26.4761" y1="3.9725" x2="92.0515" y2="69.5479">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk12" fill="url(#SVGID_12_)" d="M35.8268041,44.9632653 C36.3216495,44.7183673 36.4206186,44.1795918 36.0247423,43.7877551 L33.1546392,40.9469388 C32.7587629,40.555102 32.4123711,40.7020408 32.4123711,41.2408163 L32.4123711,45.5510204 C32.4123711,46.0897959 32.857732,46.3836735 33.3525773,46.1877551 L35.8268041,44.9632653 L35.8268041,44.9632653 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s" fill="freeze" begin="rk11Show.end - 0.15s" id="rk12Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s" fill="freeze" begin="rk11Hide.end - 0.15s" id="rk12Hide" />
+    </path>
+    <linearGradient id="SVGID_13_" gradientUnits="userSpaceOnUse" x1="-9.1921" y1="39.6407" x2="56.3833" y2="105.2161">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk13" fill="url(#SVGID_13_)" d="M16.1319588,41.1918367 C16.1319588,40.6530612 15.785567,40.5061224 15.3896907,40.8979592 L12.5195876,43.7387755 C12.1237113,44.1306122 12.2226804,44.6693878 12.7175258,44.9142857 L15.1917526,46.0897959 C15.7360825,46.2857143 16.1319588,46.0408163 16.1319588,45.4530612 L16.1319588,41.1918367 L16.1319588,41.1918367 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s" fill="freeze" begin="rk12Show.end - 0.15s" id="rk13Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s" fill="freeze" begin="rk12Hide.end - 0.15s" id="rk13Hide" />
+    </path>
+    <linearGradient id="SVGID_14_" gradientUnits="userSpaceOnUse" x1="-14.0903" y1="44.5388" x2="51.4851" y2="110.1142">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk14" fill="url(#SVGID_14_)" d="M7.1257732,32.7673469 C7.52164948,32.3755102 7.37319588,32.0326531 6.82886598,32.0326531 L2.4742268,32.0326531 C1.92989691,32.0326531 1.63298969,32.4734694 1.83092784,32.9632653 L3.0185567,35.4122449 C3.26597938,35.9020408 3.81030928,36 4.20618557,35.6081633 L7.1257732,32.7673469 L7.1257732,32.7673469 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s" fill="freeze" begin="rk13Show.end - 0.15s" id="rk14Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s" fill="freeze" begin="rk13Hide.end - 0.15s" id="rk14Hide" />
+    </path>
+    <linearGradient id="SVGID_15_" gradientUnits="userSpaceOnUse" x1="39.6806" y1="-9.232" x2="105.256" y2="56.3433">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk15" fill="url(#SVGID_15_)" d="M4.2556701,12.3428571 C3.85979381,11.9510204 3.31546392,12.0489796 3.06804124,12.5387755 L1.88041237,14.9877551 C1.68247423,15.5265306 1.92989691,15.9183673 2.52371134,15.9183673 L6.87835052,15.9183673 C7.42268041,15.9183673 7.57113402,15.5755102 7.17525773,15.1836735 L4.2556701,12.3428571 L4.2556701,12.3428571 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s" fill="freeze" begin="rk14Show.end - 0.15s" id="rk15Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s" fill="freeze" begin="rk14Hide.end - 0.15s" id="rk15Hide" />
+    </path>
+    <linearGradient id="SVGID_16_" gradientUnits="userSpaceOnUse" x1="-1.1457" y1="31.5942" x2="64.4297" y2="97.1696">
+      <stop  offset="0" style="stop-color:#00B280"/>
+      <stop  offset="0.1865" style="stop-color:#07AF97"/>
+      <stop  offset="0.5425" style="stop-color:#13ABBF"/>
+      <stop  offset="0.8261" style="stop-color:#1BA9D7"/>
+      <stop  offset="1" style="stop-color:#1DA8E0"/>
+    </linearGradient>
+    <path id="rk16" fill="url(#SVGID_16_)" d="M16.1319588,2.44897959 C16.1319588,1.91020408 15.6865979,1.61632653 15.1917526,1.8122449 L12.7175258,2.9877551 C12.2226804,3.23265306 12.1237113,3.77142857 12.5195876,4.16326531 L15.3896907,7.00408163 C15.785567,7.39591837 16.1319588,7.24897959 16.1319588,6.71020408 L16.1319588,2.44897959 L16.1319588,2.44897959 Z">
+      <animate attributeName="fill-opacity" from="0" to="1" dur="0.25s" fill="freeze" begin="rk15Show.end - 0.15s" id="rk16Show" />
+      <animate attributeName="fill-opacity" from="1" to="0" dur="0.25s" fill="freeze" begin="rk15Hide.end - 0.15s" id="rk16Hide" />
+    </path>
+  </g>
+</svg>
