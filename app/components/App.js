@@ -47,20 +47,25 @@ export default class App extends React.Component {
     const requestHeaders = Object.assign({}, defaultHeaders);
 
     var rubrikGQLURL = '';
+    var userProvidedIP = this.state.ip;
+    var userProvidedIP = userProvidedIP.replace('https://', '');
+
+
     if (this.state.platform === 'polaris') {
-      var userProvidedIP = this.state.ip;
       var userProvidedIP = userProvidedIP.replace('.my.rubrik.com', '');
-      var userProvidedIP = userProvidedIP.replace('https://', '');
 
       var rubrikGQLURL = 'https://' + userProvidedIP + '.my.rubrik.com/api/graphql';
       
     } else {
-      var rubrikGQLURL = 'https://' + this.state.ip + '/api/internal/graphql';
+      if (userProvidedIP.slice(-1) == "/") {
+        var userProvidedIP = userProvidedIP.substring(0, userProvidedIP.length - 1)
+      }
+
+      var rubrikGQLURL = 'https://' + userProvidedIP + '/api/internal/graphql';
     }
 
     const url = new URL(rubrikGQLURL);
    
-
     const method = 'post';
 
     const requestOptions = {
@@ -110,11 +115,13 @@ export default class App extends React.Component {
     var config = '';
     var defaultHeaders = '';
 
+    var userProvidedIP = this.state.ip;
+    var userProvidedIP = userProvidedIP.replace('https://', '');
+
     if (this.state.platform === 'polaris') {
 
-      var userProvidedIP = this.state.ip;
+      
       var userProvidedIP = userProvidedIP.replace('.my.rubrik.com', '');
-      var userProvidedIP = userProvidedIP.replace('https://', '');
 
       var rubrikURL = 'https://' + userProvidedIP + '.my.rubrik.com/api/session';
 
@@ -128,7 +135,12 @@ export default class App extends React.Component {
         Accept: 'application/json'
       };
     } else {
-      var rubrikURL = 'https://' + this.state.ip + '/api/internal/session';
+
+      if (userProvidedIP.slice(-1) == "/") {
+        var userProvidedIP = userProvidedIP.substring(0, userProvidedIP.length - 1)
+      }
+
+      var rubrikURL = 'https://' + userProvidedIP + '/api/internal/session';
 
       var data = {
         initParams: {}
@@ -174,7 +186,6 @@ export default class App extends React.Component {
         if (error.response.status === 401 || error.response.status === 422) {
           this.setState({
             error: 'Sorry, you entered an incorrect email or password.',
-            password: '',
             buttonDisabled: 'false',
             loginButtonMessage: 'Login'
           });
@@ -188,14 +199,12 @@ export default class App extends React.Component {
       } else if (error.message.includes('getaddrinfo ENOTFOUND')) {
         this.setState({
           error: 'Sorry, we were unable to connect to the provided Rubrik platform.',
-          ip: '',
           buttonDisabled: 'false',
           loginButtonMessage: 'Login'
         });
       } else if (error.message.includes('connect ETIMEDOUT') || error.message.includes('timeout of 15000ms exceeded') ) {
         this.setState({
           error: 'Sorry, we were unable to connect to the provided Rubrik platform.',
-          ip: '',
           buttonDisabled: 'false',
           loginButtonMessage: 'Login'
         });
