@@ -57,12 +57,9 @@ export default class App extends React.Component {
     } else {
       var rubrikGQLURL = 'https://' + this.state.ip + '/api/internal/graphql';
     }
-    console.log('Rubrik GQL URL Unformatted');
-    console.log(rubrikGQLURL);
 
     const url = new URL(rubrikGQLURL);
-    console.log('Formatted URL');
-    console.log(url);
+   
 
     const method = 'post';
 
@@ -108,8 +105,7 @@ export default class App extends React.Component {
   };
 
   async rubrikToken() {
-    console.log(this.state);
-
+    
     var rubrikURL = '';
     var config = '';
     var defaultHeaders = '';
@@ -122,7 +118,6 @@ export default class App extends React.Component {
 
       var rubrikURL = 'https://' + userProvidedIP + '.my.rubrik.com/api/session';
 
-      console.log(rubrikURL);
       var data = {
         username: this.state.username,
         password: this.state.password
@@ -145,14 +140,6 @@ export default class App extends React.Component {
           'Basic ' + btoa(this.state.username + ':' + this.state.password)
       };
     }
-    console.log('Config');
-    console.log(JSON.stringify(config));
-    console.log('Default Headers');
-    console.log(defaultHeaders);
-    console.log('URL');
-    console.log(rubrikURL);
-    console.log('Full State');
-    console.log(this.state);
 
     try {
       const instance = axios.create({
@@ -161,7 +148,6 @@ export default class App extends React.Component {
           rejectUnauthorized: false
         })
       });
-      console.log('Making the API request.');
       const response = await instance({
         method: 'post',
         url: rubrikURL,
@@ -169,10 +155,7 @@ export default class App extends React.Component {
         headers: defaultHeaders
       });
 
-      // const response = await instance.post(rubrikURL, config, defaultHeaders);
-      console.log('Response sent');
-
-      console.log('Post made');
+      
       if (this.state.platform === 'polaris') {
         this.setState({
           access_token: response.data.access_token,
@@ -185,11 +168,9 @@ export default class App extends React.Component {
         });
       }
     } catch (error) {
-      console.log(error.message);
 
       if (error.response) {
-        console.log(error);
-        console.log(error.response);
+        
         if (error.response.status === 401 || error.response.status === 422) {
           this.setState({
             error: 'Sorry, you entered an incorrect email or password.',
@@ -211,7 +192,6 @@ export default class App extends React.Component {
           buttonDisabled: 'false',
           loginButtonMessage: 'Login'
         });
-        console.log(this.state);
       } else if (error.message.includes('connect ETIMEDOUT') || error.message.includes('timeout of 15000ms exceeded') ) {
         this.setState({
           error: 'Sorry, we were unable to connect to the provided Rubrik platform.',
@@ -219,7 +199,6 @@ export default class App extends React.Component {
           buttonDisabled: 'false',
           loginButtonMessage: 'Login'
         });
-        console.log(this.state);
       } else {
         this.setState({
           error: error.message,
@@ -406,7 +385,6 @@ export default class App extends React.Component {
         );
       }
     } else if (this.state.access_token !== '') {
-      console.log('GraphQL Loading');
       return (
         <div className="graphiql-wrapper">
           <GraphiQL
