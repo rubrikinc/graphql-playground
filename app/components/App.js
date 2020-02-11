@@ -27,12 +27,14 @@ export default class App extends React.Component {
     this.rubrikToken = this.rubrikToken.bind(this);
   }
 
+  // Used to make each GraphQL Query
   graphQLFetcher = graphQLParams => {
     const defaultHeaders = {
       'Content-Type': 'application/json',
-      'User-Agent': 'graphiql-app',
-      authorization: 'Bearer ' + this.state.access_token
+      'User-Agent': 'RubrikGraphQLPlaygroundApp',
+      authorization: 'Basic ' + btoa(this.state.username + ':' + this.state.password)
     };
+
 
     const error = {
       data: null,
@@ -109,6 +111,8 @@ export default class App extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  // Used to establish an intial connection to the select platform
+  // to validate the username and password works correctly.
   async rubrikToken() {
     
     var rubrikURL = '';
@@ -132,6 +136,7 @@ export default class App extends React.Component {
 
       var defaultHeaders = {
         'Content-Type': 'application/json',
+        'User-Agent': 'RubrikGraphQLPlaygroundApp',
         Accept: 'application/json'
       };
     } else {
@@ -148,6 +153,7 @@ export default class App extends React.Component {
 
       var defaultHeaders = {
         'Content-Type': 'application/json',
+        'User-Agent': 'RubrikGraphQLPlaygroundApp',
         Authorization:
           'Basic ' + btoa(this.state.username + ':' + this.state.password)
       };
