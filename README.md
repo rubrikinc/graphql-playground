@@ -4,6 +4,8 @@ The Rubrik GraphQL Playground is a cross-platform desktop application designed t
 
 GraphQL is fully supported in CDM v5.2 but _currently_ has limited support in Polaris.
 
+![Playground](https://user-images.githubusercontent.com/8610203/74205365-acdaf180-4c3c-11ea-883d-588535e4bdc5.png)
+
 ## :muscle: How You Can Help
 
 We glady welcome contributions from the community. From updating the documentation to adding more functions for Python, all ideas are welcome. Thank you in advance for all of your issues, pull requests, and comments! :star:
