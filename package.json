@@ -2,7 +2,7 @@
   "name": "rubrik-graphql-playground",
   "productName": "Rubrik GraphQL Playground",
   "version": "1.0.0",
-  "description": "An Electron based Playground for the Rubrik GraphQL endpoints",
+  "description": "An API Playground for the Rubrik GraphQL services.",
   "main": "main.js",
   "scripts": {
     "build-dev": "webpack --config webpack/webpack.config.js --progress --profile --colors",
