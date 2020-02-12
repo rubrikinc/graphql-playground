@@ -9,9 +9,9 @@ const {autoUpdater} = require('electron-updater');
 
 
 crashReporter.start({
-  productName: 'GraphiQL',
-  companyName: 'n/a',
-  submitURL: 'https://github.com/skevy/graphiql-app/issues',
+  productName: 'Rubrik GraphQL Playground',
+  companyName: 'Rubrik, Inc',
+  submitURL: 'https://github.com/rubrikinc/graphql-playground/issues',
   autoSubmit: true
 });
 
@@ -29,7 +29,7 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow({ width: 1024, height: 728 });
 
   electron.session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
-    details.requestHeaders['Origin'] = 'electron://graphiql-app';
+    details.requestHeaders['Origin'] = 'electron://rubrik-graphql-playground';
     callback({ cancel: false, requestHeaders: details.requestHeaders });
   });
 
@@ -49,28 +49,10 @@ app.on('ready', function() {
 
   if (process.platform === 'darwin') {
     template = [{
-      label: 'GraphiQL',
+      label: 'Rubrik GraphQL Playground',
       submenu: [{
-        label: 'About GraphiQL',
+        label: 'About Rubrik GraphQL Playground',
         selector: 'orderFrontStandardAboutPanel:'
-      }, {
-        type: 'separator'
-      }, {
-        label: 'Services',
-        submenu: []
-      }, {
-        type: 'separator'
-      }, {
-        label: 'Hide GraphiQL',
-        accelerator: 'Command+H',
-        selector: 'hide:'
-      }, {
-        label: 'Hide Others',
-        accelerator: 'Command+Shift+H',
-        selector: 'hideOtherApplications:'
-      }, {
-        label: 'Show All',
-        selector: 'unhideAllApplications:'
       }, {
         type: 'separator'
       }, {

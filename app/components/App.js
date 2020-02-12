@@ -27,12 +27,14 @@ export default class App extends React.Component {
     this.rubrikToken = this.rubrikToken.bind(this);
   }
 
+  // Used to make each GraphQL Query
   graphQLFetcher = graphQLParams => {
     const defaultHeaders = {
       'Content-Type': 'application/json',
-      'User-Agent': 'graphiql-app',
-      authorization: 'Bearer ' + this.state.access_token
+      'User-Agent': 'RubrikGraphQLPlaygroundApp',
+      authorization: 'Basic ' + btoa(this.state.username + ':' + this.state.password)
     };
+
 
     const error = {
       data: null,
@@ -47,23 +49,25 @@ export default class App extends React.Component {
     const requestHeaders = Object.assign({}, defaultHeaders);
 
     var rubrikGQLURL = '';
+    var userProvidedIP = this.state.ip;
+    var userProvidedIP = userProvidedIP.replace('https://', '');
+
+
     if (this.state.platform === 'polaris') {
-      var userProvidedIP = this.state.ip;
       var userProvidedIP = userProvidedIP.replace('.my.rubrik.com', '');
-      var userProvidedIP = userProvidedIP.replace('https://', '');
 
       var rubrikGQLURL = 'https://' + userProvidedIP + '.my.rubrik.com/api/graphql';
       
     } else {
-      var rubrikGQLURL = 'https://' + this.state.ip + '/api/internal/graphql';
+      if (userProvidedIP.slice(-1) == "/") {
+        var userProvidedIP = userProvidedIP.substring(0, userProvidedIP.length - 1)
+      }
+
+      var rubrikGQLURL = 'https://' + userProvidedIP + '/api/internal/graphql';
     }
-    console.log('Rubrik GQL URL Unformatted');
-    console.log(rubrikGQLURL);
 
     const url = new URL(rubrikGQLURL);
-    console.log('Formatted URL');
-    console.log(url);
-
+   
     const method = 'post';
 
     const requestOptions = {
@@ -107,22 +111,24 @@ export default class App extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  // Used to establish an intial connection to the select platform
+  // to validate the username and password works correctly.
   async rubrikToken() {
-    console.log(this.state);
-
+    
     var rubrikURL = '';
     var config = '';
     var defaultHeaders = '';
 
+    var userProvidedIP = this.state.ip;
+    var userProvidedIP = userProvidedIP.replace('https://', '');
+
     if (this.state.platform === 'polaris') {
 
-      var userProvidedIP = this.state.ip;
+      
       var userProvidedIP = userProvidedIP.replace('.my.rubrik.com', '');
-      var userProvidedIP = userProvidedIP.replace('https://', '');
 
       var rubrikURL = 'https://' + userProvidedIP + '.my.rubrik.com/api/session';
 
-      console.log(rubrikURL);
       var data = {
         username: this.state.username,
         password: this.state.password
@@ -130,10 +136,16 @@ export default class App extends React.Component {
 
       var defaultHeaders = {
         'Content-Type': 'application/json',
+        'User-Agent': 'RubrikGraphQLPlaygroundApp',
         Accept: 'application/json'
       };
     } else {
-      var rubrikURL = 'https://' + this.state.ip + '/api/internal/session';
+
+      if (userProvidedIP.slice(-1) == "/") {
+        var userProvidedIP = userProvidedIP.substring(0, userProvidedIP.length - 1)
+      }
+
+      var rubrikURL = 'https://' + userProvidedIP + '/api/internal/session';
 
       var data = {
         initParams: {}
@@ -141,18 +153,11 @@ export default class App extends React.Component {
 
       var defaultHeaders = {
         'Content-Type': 'application/json',
+        'User-Agent': 'RubrikGraphQLPlaygroundApp',
         Authorization:
           'Basic ' + btoa(this.state.username + ':' + this.state.password)
       };
     }
-    console.log('Config');
-    console.log(JSON.stringify(config));
-    console.log('Default Headers');
-    console.log(defaultHeaders);
-    console.log('URL');
-    console.log(rubrikURL);
-    console.log('Full State');
-    console.log(this.state);
 
     try {
       const instance = axios.create({
@@ -161,7 +166,6 @@ export default class App extends React.Component {
           rejectUnauthorized: false
         })
       });
-      console.log('Making the API request.');
       const response = await instance({
         method: 'post',
         url: rubrikURL,
@@ -169,10 +173,7 @@ export default class App extends React.Component {
         headers: defaultHeaders
       });
 
-      // const response = await instance.post(rubrikURL, config, defaultHeaders);
-      console.log('Response sent');
-
-      console.log('Post made');
+      
       if (this.state.platform === 'polaris') {
         this.setState({
           access_token: response.data.access_token,
@@ -185,15 +186,12 @@ export default class App extends React.Component {
         });
       }
     } catch (error) {
-      console.log(error.message);
 
       if (error.response) {
-        console.log(error);
-        console.log(error.response);
+        
         if (error.response.status === 401 || error.response.status === 422) {
           this.setState({
             error: 'Sorry, you entered an incorrect email or password.',
-            password: '',
             buttonDisabled: 'false',
             loginButtonMessage: 'Login'
           });
@@ -207,19 +205,15 @@ export default class App extends React.Component {
       } else if (error.message.includes('getaddrinfo ENOTFOUND')) {
         this.setState({
           error: 'Sorry, we were unable to connect to the provided Rubrik platform.',
-          ip: '',
           buttonDisabled: 'false',
           loginButtonMessage: 'Login'
         });
-        console.log(this.state);
       } else if (error.message.includes('connect ETIMEDOUT') || error.message.includes('timeout of 15000ms exceeded') ) {
         this.setState({
           error: 'Sorry, we were unable to connect to the provided Rubrik platform.',
-          ip: '',
           buttonDisabled: 'false',
           loginButtonMessage: 'Login'
         });
-        console.log(this.state);
       } else {
         this.setState({
           error: error.message,
@@ -406,7 +400,6 @@ export default class App extends React.Component {
         );
       }
     } else if (this.state.access_token !== '') {
-      console.log('GraphQL Loading');
       return (
         <div className="graphiql-wrapper">
           <GraphiQL
