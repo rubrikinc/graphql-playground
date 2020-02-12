@@ -1,7 +1,7 @@
 {
   "name": "rubrik-graphql-playground",
   "productName": "Rubrik GraphQL Playground",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "An Electron based Playground for the Rubrik GraphQL endpoints",
   "main": "main.js",
   "scripts": {
