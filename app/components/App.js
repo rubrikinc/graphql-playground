@@ -29,12 +29,22 @@ export default class App extends React.Component {
 
   // Used to make each GraphQL Query
   graphQLFetcher = graphQLParams => {
-    const defaultHeaders = {
+    var defaultHeaders = {
       'Content-Type': 'application/json',
       'User-Agent': 'RubrikGraphQLPlaygroundApp',
-      authorization: 'Basic ' + btoa(this.state.username + ':' + this.state.password)
     };
 
+    // Set the correct authorization header.
+    // Polaris does not support Basic auth but the timeout token is 24 hours
+    // so we shouldn't have issues with timeouts
+    if (this.state.platform === 'polaris') {
+
+      defaultHeaders['authorization'] = 'Bearer ' + this.state.access_token
+      
+    } else {
+      defaultHeaders['authorization'] = 'Basic ' + btoa(this.state.username + ':' + this.state.password);
+      
+      }
 
     const error = {
       data: null,
