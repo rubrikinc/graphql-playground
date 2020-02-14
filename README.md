@@ -1,8 +1,10 @@
-# GraphQL Playground (Beta)
+# Rubrik GraphQL Playground
 
-The Rubrik GraphQL Playground is a cross-platform desktop application designed to allow you to interact with the Rubrik GraphQL endpoints in both Polaris and CDM. The latest versions can be downloaded on the GitHub [releases page](https://github.com/rubrikinc/graphql-playground/releases).
+The Rubrik GraphQL Playground is a cross-platform desktop application designed to allow you to interact with the Rubrik GraphQL services for both Polaris and CDM. The latest versions can be downloaded on the GitHub [releases page](https://github.com/rubrikinc/graphql-playground/releases).
 
-GraphQL _currently_ has limited support in the Rubrik ecosystem. If you plan on utilizing these endpoints please contact your local Sales team or the Rubrik Build team (build.rubrik.com).
+GraphQL is fully supported in CDM v5.2 but _currently_ has limited support in Polaris.
+
+![Playground](https://user-images.githubusercontent.com/8610203/74205365-acdaf180-4c3c-11ea-883d-588535e4bdc5.png)
 
 ## :muscle: How You Can Help
 
