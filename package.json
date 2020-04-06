@@ -68,7 +68,7 @@
     "ignore-loader": "^0.1.2",
     "json-loader": "^0.5.3",
     "loaders-by-extension": "^1.0.0",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.3",
     "raw-loader": "^0.5.1",
     "spectron": "^3.2.3",
     "stats-webpack-plugin": "^0.2.2",
