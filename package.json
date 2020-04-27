@@ -27,8 +27,8 @@
     "mac": {
       "category": "public.app-category.developer-tools",
       "hardenedRuntime": true,
-      "entitlements": "build/entitlements.mac.plist",
-      "entitlementsInherit": "build/entitlements.mac.plist",
+      "entitlements": "assets/entitlements.mac.plist",
+      "entitlementsInherit": "assets/entitlements.mac.plist",
       "gatekeeperAssess": false
     },
     "dmg": {
@@ -64,20 +64,6 @@
       "output": "release"
     }
   },
-  "dependencies": {
-    "@material-ui/core": "^4.9.11",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.50",
-    "axios": "^0.19.2",
-    "electron-is-dev": "^1.2.0",
-    "graphiql": "^0.17.5",
-    "graphql": "^14.4.2",
-    "https": "^1.0.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-icons": "^3.10.0",
-    "react-scripts": "2.1.5"
-  },
   "homepage": "./",
   "main": "public/electron.js",
   "scripts": {
@@ -100,13 +86,27 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "dependencies": {
+    "@material-ui/core": "^4.9.11",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.50",
+    "axios": "^0.19.2",
+    "electron-is-dev": "^1.2.0",
+    "graphiql": "^0.17.5",
+    "graphql": "^14.4.2",
+    "https": "^1.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.10.0",
+    "react-scripts": "2.1.5"
+  },
   "devDependencies": {
     "@rescripts/cli": "^0.0.10",
     "@rescripts/rescript-env": "^0.0.5",
     "concurrently": "^4.1.2",
     "electron": "^4.2.12",
     "electron-builder": "^22.5.1",
-    "electron-notarize": "^0.2.1",
+    "electron-notarize": "^0.3.0",
     "electron-packager": "^12.2.0",
     "typescript": "^3.8.3",
     "wait-on": "^3.3.0"

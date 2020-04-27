@@ -1,4 +1,5 @@
 const electron = require("electron");
+const { autoUpdater } = require("electron-updater");
 const app = electron.app;
 app.commandLine.appendSwitch("ignore-certificate-errors", "true");
 
@@ -9,6 +10,11 @@ const isDev = require("electron-is-dev");
 var Menu = electron.Menu;
 
 let mainWindow;
+
+function sendStatusToWindow(text) {
+  log.info(text);
+  win.webContents.send("message", text);
+}
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -24,6 +30,8 @@ function createWindow() {
       ? "http://localhost:3000"
       : `file://${path.join(__dirname, "../build/index.html")}`
   );
+  require("update-electron-app")();
+
   if (isDev) {
     // Open the DevTools.
     //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
@@ -213,6 +221,35 @@ function createWindow() {
   mainWindow.on("closed", () => (mainWindow = null));
 }
 
+autoUpdater.on("checking-for-update", () => {
+  sendStatusToWindow("Checking for update...");
+});
+autoUpdater.on("update-available", (info) => {
+  sendStatusToWindow("Update available.");
+});
+autoUpdater.on("update-not-available", (info) => {
+  sendStatusToWindow("Update not available.");
+});
+autoUpdater.on("error", (err) => {
+  sendStatusToWindow("Error in auto-updater. " + err);
+});
+autoUpdater.on("download-progress", (progressObj) => {
+  let log_message = "Download speed: " + progressObj.bytesPerSecond;
+  log_message = log_message + " - Downloaded " + progressObj.percent + "%";
+  log_message =
+    log_message +
+    " (" +
+    progressObj.transferred +
+    "/" +
+    progressObj.total +
+    ")";
+  sendStatusToWindow(log_message);
+});
+autoUpdater.on("update-downloaded", (info) => {
+  sendStatusToWindow("Update downloaded - please restart latest version");
+  //autoUpdater.quitAndInstall();
+});
+
 app.on("ready", createWindow);
 
 app.on("window-all-closed", () => {
@@ -223,6 +260,14 @@ app.on("window-all-closed", () => {
 
 app.on("activate", () => {
   if (mainWindow === null) {
+    require("update-electron-app")();
+
     createWindow();
   }
+});
+
+// app quits.
+//-------------------------------------------------------------------
+app.on("ready", function () {
+  autoUpdater.checkForUpdatesAndNotify();
 });
