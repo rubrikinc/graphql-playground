@@ -1,87 +1,22 @@
 {
   "name": "rubrik-graphql-playground",
-  "productName": "Rubrik GraphQL Playground",
-  "version": "1.0.2",
   "description": "An API Playground for the Rubrik GraphQL APIs.",
-  "main": "main.js",
-  "scripts": {
-    "build-dev": "webpack --config webpack/webpack.config.js --progress --profile --colors",
-    "build": "webpack --config webpack/webpack.config.production.js --progress --profile --colors",
-    "start": "electron .",
-    "start-dev": "NODE_ENV=development electron .",
-    "package": "build --dir",
-    "dist-clean": "rm -rf ./dist ./release",
-    "dist": "build -mwl",
-    "release": "yarn dist-clean && yarn build && build -mwl",
-    "test": "npm run build",
-    "postinstall": "electron-builder install-app-deps"
-  },
-  "author": "Drew Russell (t. @drusse11)",
+  "version": "2.0.0",
   "license": "MIT",
-  "homepage": "https://github.com/rubrikinc/graphql-playground",
-  "bugs": {
-    "url": "https://github.com/rubrikinc/graphql-playground/issues"
+  "author": {
+    "name": "Drew Russell (@drusse11)",
+    "url": "https://build.rubrik.com"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/rubrikinc/graphql-playground.git"
   },
-  "dependencies": {
-    "axios": "^0.19.0",
-    "babel-eslint": "^10.0.2",
-    "electron-updater": "^4.1.2",
-    "eslint": "^6.1.0",
-    "graphiql": "^0.13.2",
-    "graphql": "^14.4.2",
-    "object-assign": "^4.0.1",
-    "prop-types": "^15.6.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-modal": "^2.0.2",
-    "react-router-dom": "^5.0.1"
-  },
-  "devDependencies": {
-    "asar": "^0.13.0",
-    "babel-core": "^6.25.0",
-    "babel-loader": "^6.4.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.5.2",
-    "babel-preset-flow": "^6.23.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-1": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "babel-preset-stage-3": "^6.24.1",
-    "babel-runtime": "^6.23.0",
-    "chai": "^3.5.0",
-    "chai-as-promised": "^5.3.0",
-    "css-loader": "^0.19.0",
-    "del": "^2.0.2",
-    "electron": "^1.7.8",
-    "electron-builder": "^20.33.2",
-    "electron-notarize": "^0.2.1",
-    "electron-packager": "^12.2.0",
-    "eslint-plugin-react": "^5.2.2",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.8.4",
-    "github-latest-release": "^0.1.1",
-    "html-loader": "^0.3.0",
-    "ignore-loader": "^0.1.2",
-    "json-loader": "^0.5.3",
-    "loaders-by-extension": "^1.0.0",
-    "minimist": "^1.2.0",
-    "raw-loader": "^0.5.1",
-    "spectron": "^3.2.3",
-    "stats-webpack-plugin": "^0.2.2",
-    "style-loader": "^0.12.4",
-    "url-loader": "^0.5.6",
-    "webpack": "^1.12.9",
-    "webpack-target-electron-renderer": "^0.4.0"
-  },
   "build": {
-    "directories": {
-      "output": "release"
-    },
+    "productName": "Rubrik GraphQL Playground",
+    "asar": true,
     "afterSign": "script/notarize.js",
+    "appId": "com.rubrikinc.graphql-playground",
+    "copyright": "Copyright © 2019 Rubrik",
     "publish": [
       {
         "provider": "github",
@@ -89,8 +24,13 @@
         "repo": "graphql-playground"
       }
     ],
-    "asar": true,
-    "appId": "com.rubrikinc.graphql-playground",
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "hardenedRuntime": true,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "gatekeeperAssess": false
+    },
     "dmg": {
       "contents": [
         {
@@ -104,15 +44,7 @@
           "y": 168,
           "type": "file"
         }
-      ],
-      "sign": false
-    },
-    "mac": {
-      "category": "public.app-category.developer-tools",
-      "hardenedRuntime": true,
-      "entitlements": "build/entitlements.mac.plist",
-      "entitlementsInherit": "build/entitlements.mac.plist",
-      "gatekeeperAssess": false
+      ]
     },
     "linux": {
       "category": "Development",
@@ -122,6 +54,61 @@
     },
     "nsis": {
       "perMachine": true
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "release"
     }
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.9.11",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.50",
+    "axios": "^0.19.2",
+    "electron-is-dev": "^1.2.0",
+    "graphiql": "^0.17.5",
+    "graphql": "^14.4.2",
+    "https": "^1.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.10.0",
+    "react-scripts": "2.1.5"
+  },
+  "homepage": "./",
+  "main": "public/electron.js",
+  "scripts": {
+    "start": "rescripts start",
+    "electron": "NODE_ENV=development electron .",
+    "build": "rescripts build",
+    "test": "rescripts test",
+    "eject": "react-scripts eject",
+    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-pack": "yarn build",
+    "electron-pack": "electron-builder build --dir"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@rescripts/cli": "^0.0.10",
+    "@rescripts/rescript-env": "^0.0.5",
+    "concurrently": "^4.1.2",
+    "electron": "^4.2.12",
+    "electron-builder": "^22.5.1",
+    "electron-notarize": "^0.2.1",
+    "electron-packager": "^12.2.0",
+    "typescript": "^3.8.3",
+    "wait-on": "^3.3.0"
   }
 }

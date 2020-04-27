@@ -37,3 +37,6 @@ release
 dist
 
 .envrc
+# Ignore the ./script/.env environment file which is used
+# for macOS Notarizing
+.env*

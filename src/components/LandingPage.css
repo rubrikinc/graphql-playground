@@ -1,0 +1,140 @@
+.landing-page {
+  display: flex;
+}
+.welcome-message {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../images/pattern.png"),
+    radial-gradient(
+      circle at center center,
+      rgb(0, 88, 140) 5%,
+      rgb(22, 41, 43) 80%
+    );
+  flex-grow: 1;
+  justify-content: space-between;
+
+  align-items: center;
+  height: 100vh;
+}
+
+.center-white-text {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-size: 1.86rem;
+}
+
+.larger-font-size {
+  font-size: 2.086rem;
+}
+
+.bold-text {
+  font-weight: 600;
+}
+
+.bottom-white-small-text {
+  color: rgb(255, 255, 255);
+  font-size: 1.143rem;
+  margin-bottom: 2.286rem;
+}
+
+.thin-text {
+  font-weight: 200;
+}
+
+.login {
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  flex-basis: 38.857rem;
+  align-items: center;
+}
+
+.login-text {
+  font-weight: 100;
+  color: rgb(22, 41, 43);
+  font-size: 1.986rem;
+  margin-bottom: 1.023rem;
+}
+
+.error-text {
+  font-weight: 400;
+  color: rgb(22, 41, 43);
+  font-size: 1.286rem;
+  margin-bottom: 1.023rem;
+  text-align: center;
+}
+
+.flex-container {
+  height: 85%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-row {
+  width: 85%;
+}
+
+.display-flex-justify {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.primary-button {
+  border-radius: 0.286rem;
+  line-height: 0.23;
+  color: #fff;
+  background-color: rgb(0, 134, 192);
+  border-color: rgb(0, 134, 192);
+
+  box-shadow: none;
+  display: inline-block;
+  width: 100%;
+  margin-top: 20px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.primary-button:hover {
+  background-color: #18b8e9;
+  border-color: #18b8e9;
+}
+
+.btn-row {
+  display: flex;
+}
+
+.btn-column {
+  flex: 33.33%;
+  padding: 5px;
+}
+
+h3 {
+  font-weight: 200;
+  font-size: 1.0775rem;
+  font-family: "Open Sans", sans-serif;
+  text-transform: uppercase;
+}
+
+.hide {
+  display: none;
+}
+
+a:link {
+  color: black;
+  font-weight: 100;
+  color: rgb(22, 41, 43);
+  font-size: 0.986rem;
+  margin-top: 1.023rem;
+  text-decoration: none;
+}
+
+.bottom-right {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 1.023rem;
+  margin-right: 1.023rem;
+}
