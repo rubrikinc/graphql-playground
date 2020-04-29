@@ -99,7 +99,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "update-electron-app": "^1.5.0"
   },
   "devDependencies": {
     "@rescripts/cli": "^0.0.10",
