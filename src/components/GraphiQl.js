@@ -5,9 +5,6 @@ import { graphQLFetcher } from "../utils/api";
 import rubrikLogo from "../images/rubrikLogo.svg";
 
 class GraphiQl extends Component {
-  test() {
-    console.log("test");
-  }
   render() {
     return (
       <GraphiQL
