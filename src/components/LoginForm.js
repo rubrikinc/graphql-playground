@@ -94,7 +94,11 @@ export default function LoginForm(props) {
   }
 
   return (
-    <form className={classesForm.root} noValidate autoComplete="off">
+    <form
+      className={classesForm.root}
+      onSubmit={(event) => props.loginButton(event)}
+      autoComplete="off"
+    >
       <div>
         <TextField
           autoFocus
@@ -134,9 +138,9 @@ export default function LoginForm(props) {
       </div>
       <div className={classesLoginButton.root}>
         <Button
+          type="submit"
           color="primary"
           variant="contained"
-          onClick={props.loginButton}
           disabled={diableLoginButton()}
         >
           {props.loginButtonText}

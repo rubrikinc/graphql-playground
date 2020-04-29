@@ -54,6 +54,7 @@ class LandingPage extends Component {
   }
 
   async handleLoginButton(event) {
+    event.preventDefault();
     this.setState({
       loginButtonText: connectingToPlatformButtonText,
       loginErrorMessage: null,
