@@ -40,3 +40,4 @@ dist
 # Ignore the ./script/.env environment file which is used
 # for macOS Notarizing
 .env*
+build/*
