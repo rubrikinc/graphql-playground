@@ -184,7 +184,7 @@ export function graphQLFetcher(
       response.on("end", (end) => {
         const data = Buffer.concat(chunks).toString();
         if (response.statusCode >= 400) {
-          reject(data);
+          reject(JSON.parse(data));
         } else {
           resolve(JSON.parse(data));
         }
