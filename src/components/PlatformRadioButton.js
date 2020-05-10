@@ -12,8 +12,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 
-import CodeIcon from "@material-ui/icons/Code";
-
+import DesktopMacIcon from "@material-ui/icons/DesktopMac";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -41,7 +40,7 @@ export default function SwitchListSecondary() {
     <List>
       <ListItem>
         <ListItemIcon>
-          <CodeIcon />
+          <DesktopMacIcon />
         </ListItemIcon>
         <ListItemText id="switch-list-label-wifi" primary="Default Platform" />
         <ListItemSecondaryAction>
@@ -53,22 +52,16 @@ export default function SwitchListSecondary() {
               defaultValue="top"
             >
               <FormControlLabel
-                value="none"
-                control={<Radio color="primary" />}
-                label="None"
-                labelPlacement="bottom"
-              />
-              <FormControlLabel
                 value="CDM"
                 control={<Radio color="primary" />}
                 label="CDM"
-                labelPlacement="bottom"
+                labelPlacement="top"
               />
               <FormControlLabel
                 value="Polaris"
                 control={<Radio color="primary" />}
                 label="Polaris"
-                labelPlacement="bottom"
+                labelPlacement="top"
               />
             </RadioGroup>
           </FormControl>
