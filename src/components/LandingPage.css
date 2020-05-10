@@ -138,3 +138,11 @@ a:link {
   margin-bottom: 1.023rem;
   margin-right: 1.023rem;
 }
+
+.top-right {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin-bottom: 1.023rem;
+  margin-right: 1.023rem;
+}

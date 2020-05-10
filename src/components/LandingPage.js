@@ -1,22 +1,79 @@
 import React, { Component } from "react";
+import CdmApiTokenToggle from "./CdmApiTokenToggle";
+import PolarisDevelopmentModeToggle from "./PolarisDevelopmentModeToggle";
+
 // App Component related imports
 import "./LandingPage.css";
 import rubrikLogo from "../images/rubrikLogo.svg";
 import LoginForm from "./LoginForm";
 import { validateCredentials, userFiendlyErrorMessage } from "../utils/api";
+
 // Material-UI related imports
 import CodeIcon from "@material-ui/icons/Code";
 import PersonIcon from "@material-ui/icons/Person";
 import IconButton from "@material-ui/core/IconButton";
+
 import Tooltip from "@material-ui/core/Tooltip";
-import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import Dialog from "@material-ui/core/Dialog";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogActions from "@material-ui/core/DialogActions";
+import SettingsIcon from "@material-ui/icons/Settings";
+
+import CloseIcon from "@material-ui/icons/Close";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
 
 const selectYourPlatformFormHeader = "Select your Platform";
 const loginButtonText = "Login";
 const connectingToPlatformButtonText = "Attempting to Connect";
 const polarisUserDomain = ".my.rubrik.com";
 const polarisDevDomain = ".dev.my.rubrik-lab.com";
+
+const styles = (theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(2),
+  },
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
+  },
+});
+
+const DialogTitle = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(2),
+  },
+}))(MuiDialogContent);
+
+const DialogActions = withStyles((theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1),
+  },
+}))(MuiDialogActions);
 
 class LandingPage extends Component {
   constructor(props) {
@@ -34,6 +91,7 @@ class LandingPage extends Component {
       cdmApiToken: null,
       polarisDomain: polarisUserDomain,
       usingCdmApiToken: false,
+      settingsOpen: true,
     };
 
     this.createLoginForm = this.createLoginForm.bind(this);
@@ -44,6 +102,8 @@ class LandingPage extends Component {
     this.createLoginHeader = this.createLoginHeader.bind(this);
     this.createDevModeIcon = this.createDevModeIcon.bind(this);
     this.handleModeButton = this.handleModeButton.bind(this);
+    this.handleSettingsOpen = this.handleSettingsOpen.bind(this);
+    this.handleSettingsClose = this.handleSettingsClose.bind(this);
   }
 
   handleSwitchToLogin(event) {
@@ -136,14 +196,68 @@ class LandingPage extends Component {
     }
   }
 
+  handleSettingsOpen() {
+    this.setState({
+      settingsOpen: true,
+    });
+  }
+
+  handleSettingsClose() {
+    this.setState({
+      settingsOpen: false,
+    });
+  }
+
   createFullLandingPageUi() {
     return (
       <React.Fragment>
         <div className="landing-page">
+          {this.createSettings()}
           {this.createWelcome()}
 
           {this.createLogin()}
         </div>
+      </React.Fragment>
+    );
+  }
+
+  createSettingsIcon() {
+    return (
+      <div className="top-right">
+        <IconButton aria-label="delete" onClick={this.handleSettingsOpen}>
+          <SettingsIcon />
+        </IconButton>
+      </div>
+    );
+  }
+
+  createSettings() {
+    return (
+      <React.Fragment>
+        {this.createSettingsIcon()}
+        <Dialog
+          onClose={this.handleSettingsClose}
+          aria-labelledby="customized-dialog-title"
+          open={this.state.settingsOpen}
+          fullWidth="md"
+          maxWidth="md"
+        >
+          <DialogTitle
+            id="customized-dialog-title"
+            onClose={this.handleSettingsClose}
+          >
+            Default Playground Settings
+          </DialogTitle>
+          <DialogContent dividers>
+            <CdmApiTokenToggle />
+            <PolarisDevelopmentModeToggle />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleSettingsClose} color="primary">
+              Save changes
+            </Button>
+          </DialogActions>
+        </Dialog>
       </React.Fragment>
     );
   }
