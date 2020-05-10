@@ -2,6 +2,8 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 
 import InputAdornment from "@material-ui/core/InputAdornment";
 import "../components/LandingPage.css";
@@ -63,33 +65,54 @@ export default function LoginForm(props) {
   function diableLoginButton() {
     // This function controls whether or not the field button is disabled.
     // The logic is super ugly and can be cleaned up but it works
-    if (
-      props.ip === null ||
-      props.username === null ||
-      props.password === null
-    ) {
-      return true;
-    }
-    if (props.ip !== null) {
-      if (props.ip.length <= 0) {
+    if (props.usingCdmApiToken === false) {
+      if (
+        props.ip === null ||
+        props.username === null ||
+        props.password === null
+      ) {
         return true;
       }
-    }
+      if (props.ip !== null) {
+        if (props.ip.length <= 0) {
+          return true;
+        }
+      }
 
-    if (props.username !== null) {
-      if (props.username.length <= 0) {
+      if (props.username !== null) {
+        if (props.username.length <= 0) {
+          return true;
+        }
+      }
+
+      if (props.password !== null) {
+        if (props.password.length <= 0) {
+          return true;
+        }
+      }
+
+      if (props.loginButtonText !== "Login") {
         return true;
       }
-    }
-
-    if (props.password !== null) {
-      if (props.password.length <= 0) {
+    } else {
+      if (props.ip === null || props.cdmApiToken === null) {
         return true;
       }
-    }
+      if (props.ip !== null) {
+        if (props.ip.length <= 0) {
+          return true;
+        }
+      }
 
-    if (props.loginButtonText !== "Login") {
-      return true;
+      if (props.cdmApiToken !== null) {
+        if (props.cdmApiToken.length <= 0) {
+          return true;
+        }
+      }
+
+      if (props.loginButtonText !== "Login") {
+        return true;
+      }
     }
   }
 
@@ -106,7 +129,7 @@ export default function LoginForm(props) {
           required
           id="ip"
           label={props.platform === "cdm" ? "CDM IP or FQDN" : "Polaris Domain"}
-          onChange={props.onChange}
+          onChange={props.onFormChange}
           InputProps={
             props.platform === "cdm"
               ? null
@@ -119,21 +142,59 @@ export default function LoginForm(props) {
                 }
           }
         />
+
         <TextField
-          required
-          id="username"
-          label="Username"
-          onChange={props.onChange}
-          error={props.username !== null && props.username === ""}
+          required={props.usingCdmApiToken === true ? true : false}
+          id="cdmApiToken"
+          label="API Token"
+          type="password"
+          onChange={props.onFormChange}
+          error={props.cdmApiToken !== null && props.cdmApiToken === ""}
+          style={props.usingCdmApiToken === false ? { display: "none" } : {}}
         />
 
         <TextField
-          required
+          required={props.usingCdmApiToken === false ? true : false}
+          id="username"
+          label="Username"
+          onChange={props.onFormChange}
+          error={props.username !== null && props.username === ""}
+          style={props.usingCdmApiToken === true ? { display: "none" } : {}}
+        />
+
+        <TextField
+          required={props.usingCdmApiToken === false ? true : false}
           id="password"
           label="Password"
           type="password"
-          onChange={props.onChange}
+          onChange={props.onFormChange}
           error={props.password !== null && props.password === ""}
+          style={props.usingCdmApiToken === true ? { display: "none" } : {}}
+        />
+        {/* TODO: Enable Remember Me functionality */}
+        {/* <FormControlLabel
+          control={
+            <Checkbox
+              checked={state.rememberMe}
+              onChange={handleCheckBox}
+              name="rememberMe"
+              color="primary"
+            />
+          }
+          label="Remember me"
+        /> */}
+        <FormControlLabel
+          control={
+            <Checkbox
+              id="useApiTokenCheckBox"
+              checked={props.usingCdmApiToken}
+              onChange={props.onFormChange}
+              name="usingCdmApiToken"
+              color="primary"
+            />
+          }
+          style={props.platform === "polaris" ? { display: "none" } : {}}
+          label="Use API Token Authentication"
         />
       </div>
       <div className={classesLoginButton.root}>
