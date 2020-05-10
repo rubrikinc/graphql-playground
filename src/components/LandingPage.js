@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CdmApiTokenToggle from "./CdmApiTokenToggle";
 import PolarisDevelopmentModeToggle from "./PolarisDevelopmentModeToggle";
+import PlatformRadioButton from "./PlatformRadioButton";
 
 // App Component related imports
 import "./LandingPage.css";
@@ -249,6 +250,7 @@ class LandingPage extends Component {
             Default Playground Settings
           </DialogTitle>
           <DialogContent dividers>
+            <PlatformRadioButton />
             <CdmApiTokenToggle />
             <PolarisDevelopmentModeToggle />
           </DialogContent>
