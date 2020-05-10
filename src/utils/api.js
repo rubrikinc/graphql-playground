@@ -19,45 +19,36 @@ function formatIp(ip) {
     .replace("/", "");
 }
 
-export function userFiendlyErrorMessage(error) {
+export function userFiendlyErrorMessage(error, usingCdmApiToken) {
   /*
    * This function will processes an error mesage returned by an API call
    * and then provide a user friendly version of that error message
    */
-  let userFiendlyErrorMessage;
-  try {
-    console.log(error.response);
-  } catch (error) {
-    console.log("No additional error detail");
-  }
-
   if (error.response) {
     if (error.response.status === 401 || error.response.status === 422) {
-      userFiendlyErrorMessage =
-        "Sorry, you entered an incorrect email or password.";
+      if (usingCdmApiToken === true) {
+        return "Sorry, you entered an incorrect API token.";
+      } else {
+        return "Sorry, you entered an incorrect email or password.";
+      }
     } else if (error.response.status === 400 || error.response.status === 401) {
-      userFiendlyErrorMessage =
-        "Sorry, the request was rejected as malformed by the Rubrik platform.";
+      return "Sorry, the request was rejected as malformed by the Rubrik platform.";
     } else {
-      userFiendlyErrorMessage = `Sorry, the request was rejected with a ${error.response.status} (${error.response.data.message}) HTTP response status code.`;
+      return `Sorry, the request was rejected with a ${error.response.status} (${error.response.data.message}) HTTP response status code.`;
     }
   } else if (
     error.message.includes("getaddrinfo ENOTFOUND") ||
     error.message.includes("Network Error")
   ) {
-    userFiendlyErrorMessage =
-      "Sorry, we were unable to connect to the provided Rubrik platform.";
+    return "Sorry, we were unable to connect to the provided Rubrik platform.";
   } else if (
     error.message.includes("connect ETIMEDOUT") ||
     error.message.includes("timeout of 15000ms exceeded")
   ) {
-    userFiendlyErrorMessage =
-      "Sorry, the connection to the Rubrik platform timeout and we were unable to connect.";
+    return "Sorry, the connection to the Rubrik platform timeout and we were unable to connect.";
   } else {
-    userFiendlyErrorMessage = error.message;
+    return error.message;
   }
-
-  return userFiendlyErrorMessage;
 }
 
 async function rubrikApiPost(url, httpHeaders, body) {
@@ -65,9 +56,6 @@ async function rubrikApiPost(url, httpHeaders, body) {
    * This function will make an HTTP Post using the supplied endpoint and
    * httpHeaders.
    */
-  console.log("rubrikApiPost");
-  console.log(httpHeaders);
-  console.log(body);
 
   const instance = axios.create({
     timeout: 15000,
@@ -85,11 +73,33 @@ async function rubrikApiPost(url, httpHeaders, body) {
   return response;
 }
 
+async function rubrikApiGet(url, httpHeaders) {
+  /*
+   * This function will make an HTTP Post using the supplied endpoint and
+   * httpHeaders.
+   */
+
+  const instance = axios.create({
+    timeout: 15000,
+    httpsAgent: new https.Agent({
+      rejectUnauthorized: false,
+    }),
+  });
+  const response = await instance({
+    method: "get",
+    url: url,
+    headers: httpHeaders,
+  });
+  return response;
+}
+
 export async function validateCredentials(
   platform,
   nodeIp,
   username,
   password,
+  cdmApiToken,
+  usingCdmApiToken,
   polarisDomain
 ) {
   /*
@@ -102,8 +112,12 @@ export async function validateCredentials(
   var endpoint;
   var postBody;
   if (platform === "cdm") {
-    httpHeader.Authorization = "Basic " + btoa(username + ":" + password);
-    endpoint = "/api/v1/session";
+    if (usingCdmApiToken) {
+      httpHeader.Authorization = "Bearer " + cdmApiToken;
+    } else {
+      httpHeader.Authorization = "Basic " + btoa(username + ":" + password);
+    }
+    endpoint = "/api/v1/cluster/me/version";
     postBody = {};
   } else {
     httpHeader.Accept = "application/json, text/plain";
@@ -114,21 +128,16 @@ export async function validateCredentials(
       password: password,
     };
   }
-
-  console.log(httpHeader);
-
   const formattedNodeIp = formatIp(nodeIp);
-  console.log(formattedNodeIp);
-  console.log(endpoint);
 
   let url = `https://${formattedNodeIp}${endpoint}`;
-  console.log(url);
 
-  var response = await rubrikApiPost(url, httpHeader, postBody);
-
+  let response;
   if (platform === "cdm") {
-    return response.data.token;
+    response = await rubrikApiGet(url, httpHeader);
+    return response.data.version;
   } else {
+    response = await rubrikApiPost(url, httpHeader, postBody);
     return response.data.access_token;
   }
 }
@@ -156,7 +165,11 @@ export function graphQLFetcher(
     httpHeader.Authorization = `Bearer ${apiToken}`;
     endpoint = endpointPrefix + endpointSuffixPolaris;
   } else {
-    httpHeader.Authorization = "Basic " + btoa(username + ":" + password);
+    if (password === null) {
+      httpHeader.Authorization = "Bearer " + apiToken;
+    } else {
+      httpHeader.Authorization = "Basic " + btoa(username + ":" + password);
+    }
     endpoint = endpointPrefix + endpointSuffixCdm;
   }
 

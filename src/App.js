@@ -11,6 +11,7 @@ class App extends Component {
       nodeIp: null,
       username: null,
       password: null,
+      cdmApiToken: null,
       apiToken: null,
       polarisDomain: null,
     };
