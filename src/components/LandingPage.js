@@ -31,13 +31,15 @@ class LandingPage extends Component {
       ip: null,
       username: null,
       password: null,
+      cdmApiToken: null,
       polarisDomain: polarisUserDomain,
+      usingCdmApiToken: false,
     };
 
     this.createLoginForm = this.createLoginForm.bind(this);
     this.handleSwitchToLogin = this.handleSwitchToLogin.bind(this);
     this.handleSelectYourPlatform = this.handleSelectYourPlatform.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.onFormChange = this.onFormChange.bind(this);
     this.handleLoginButton = this.handleLoginButton.bind(this);
     this.createLoginHeader = this.createLoginHeader.bind(this);
     this.createDevModeIcon = this.createDevModeIcon.bind(this);
@@ -66,13 +68,24 @@ class LandingPage extends Component {
         this.state.ip,
         this.state.username,
         this.state.password,
+        this.state.cdmApiToken,
+        this.state.usingCdmApiToken,
         this.state.polarisDomain
       );
 
       this.setState({
-        apiToken: apiToken,
+        apiToken: this.state.cdmApiToken ? this.state.cdmApiToken : apiToken,
         loginButtonText: "Login",
       });
+
+      // If using API Token Authentication for CDM connectivity, reset the username
+      // and password to null in case they were also filled out in the login form
+      if (this.state.usingCdmApiToken) {
+        this.setState({
+          username: null,
+          password: null,
+        });
+      }
 
       this.props.credentialUpdate(
         this.state.platform,
@@ -84,7 +97,10 @@ class LandingPage extends Component {
       );
     } catch (error) {
       this.setState({
-        loginErrorMessage: userFiendlyErrorMessage(error),
+        loginErrorMessage: userFiendlyErrorMessage(
+          error,
+          this.state.usingCdmApiToken
+        ),
         loginButtonText: loginButtonText,
       });
     }
@@ -94,6 +110,7 @@ class LandingPage extends Component {
     this.setState({
       platform: this.state.platform === "polaris" ? "cdm" : "polaris",
       loginErrorMessage: null,
+      usingCdmApiToken: false,
     });
   }
 
@@ -106,10 +123,17 @@ class LandingPage extends Component {
     });
   }
 
-  onChange(event) {
+  onFormChange(event) {
     // This function handles the input from the form fields and sets the
     // appropriate state.
-    this.setState({ [event.target.id]: event.target.value });
+
+    if (event.target.id !== "useApiTokenCheckBox") {
+      this.setState({ [event.target.id]: event.target.value });
+    } else {
+      this.setState({
+        usingCdmApiToken: event.target.checked,
+      });
+    }
   }
 
   createFullLandingPageUi() {
@@ -276,8 +300,10 @@ class LandingPage extends Component {
         ip={this.state.ip}
         username={this.state.username}
         password={this.state.password}
+        cdmApiToken={this.state.cdmApiToken}
+        usingCdmApiToken={this.state.usingCdmApiToken}
         selectYourPlatform={this.handleSelectYourPlatform}
-        onChange={this.onChange}
+        onFormChange={this.onFormChange}
         loginButton={this.handleLoginButton}
         loginButtonText={this.state.loginButtonText}
         polarisDomain={this.state.polarisDomain}
