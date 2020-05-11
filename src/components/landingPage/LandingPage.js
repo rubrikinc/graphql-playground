@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import CdmApiTokenToggle from "./CdmApiTokenToggle";
-import PolarisDevelopmentModeToggle from "./PolarisDevelopmentModeToggle";
-import PlatformRadioButton from "./PlatformRadioButton";
+import CdmApiTokenToggle from "../defaultSettingsModal/CdmApiTokenToggle";
+import PolarisDevelopmentModeToggle from "../defaultSettingsModal/PolarisDevelopmentModeToggle";
+import PlatformRadioButton from "../defaultSettingsModal/DefaultPlatformRadioButton";
 
 // App Component related imports
 import "./LandingPage.css";
-import rubrikLogo from "../images/rubrikLogo.svg";
-import LoginForm from "./LoginForm";
-import { validateCredentials, userFiendlyErrorMessage } from "../utils/api";
+import rubrikLogo from "../../images/rubrikLogo.svg";
+import LoginForm from "../loginForm/LoginForm";
+import { validateCredentials, userFiendlyErrorMessage } from "../../utils/api";
 
 // Material-UI related imports
 import CodeIcon from "@material-ui/icons/Code";

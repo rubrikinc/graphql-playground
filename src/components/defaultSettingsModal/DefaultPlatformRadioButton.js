@@ -3,14 +3,12 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
 
 import DesktopMacIcon from "@material-ui/icons/DesktopMac";
 const useStyles = makeStyles((theme) => ({
@@ -55,13 +53,19 @@ export default function SwitchListSecondary() {
                 value="CDM"
                 control={<Radio color="primary" />}
                 label="CDM"
-                labelPlacement="top"
+                labelPlacement="right"
               />
               <FormControlLabel
                 value="Polaris"
                 control={<Radio color="primary" />}
                 label="Polaris"
-                labelPlacement="top"
+                labelPlacement="right"
+              />
+              <FormControlLabel
+                value="None"
+                control={<Radio color="primary" />}
+                label="None"
+                labelPlacement="right"
               />
             </RadioGroup>
           </FormControl>

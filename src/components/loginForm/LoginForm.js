@@ -6,7 +6,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
 import InputAdornment from "@material-ui/core/InputAdornment";
-import "../components/LandingPage.css";
+import "../../components/landingPage/LandingPage.css";
 
 const useStylesForm = makeStyles((theme) => ({
   root: {

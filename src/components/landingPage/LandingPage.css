@@ -4,7 +4,7 @@
 .welcome-message {
   display: flex;
   flex-direction: column;
-  background-image: url("../images/pattern.png"),
+  background-image: url("../../images/pattern.png"),
     radial-gradient(
       circle at center center,
       rgb(0, 88, 140) 5%,

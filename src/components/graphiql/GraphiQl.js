@@ -4,8 +4,8 @@ import "graphiql/graphiql.css";
 // Import custom changes to the GraphiQl CSS that improves the visability
 // of the Types
 import "./GraphiQl.css";
-import { graphQLFetcher } from "../utils/api";
-import rubrikLogo from "../images/rubrikLogo.svg";
+import { graphQLFetcher } from "../../utils/api";
+import rubrikLogo from "../../images/rubrikLogo.svg";
 
 class GraphiQl extends Component {
   render() {
