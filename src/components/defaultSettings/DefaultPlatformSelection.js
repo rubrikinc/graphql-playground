@@ -12,20 +12,23 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 import DesktopMacIcon from "@material-ui/icons/DesktopMac";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: "inline-flex",
-    flexWrap: "wrap",
-  },
+// Used to format the Select dropdown
+const useStyles = makeStyles(() => ({
   formControl: {
     minWidth: 100,
     marginRight: 20,
   },
 }));
 
+const storage = window.localStorage;
+
 const DefaultPlatform = ({ handleDefaultPlatform }) => {
   const classes = useStyles();
-  const [platform, setPlatform] = React.useState("None");
+  const [platform, setPlatform] = React.useState(
+    storage.getItem("platform") === null ? "none" : storage.getItem("platform")
+  );
+  console.log("Platform");
+  console.log(platform);
 
   const handleChange = (event) => {
     setPlatform(event.target.value);
@@ -50,9 +53,9 @@ const DefaultPlatform = ({ handleDefaultPlatform }) => {
               value={platform}
               onChange={handleChange}
             >
-              <MenuItem value="None">None</MenuItem>
-              <MenuItem value="CDM">CDM</MenuItem>
-              <MenuItem value="Polaris">Polaris</MenuItem>
+              <MenuItem value="none">None</MenuItem>
+              <MenuItem value="cdm">CDM</MenuItem>
+              <MenuItem value="polaris">Polaris</MenuItem>
             </Select>
           </FormControl>
         </ListItemSecondaryAction>
