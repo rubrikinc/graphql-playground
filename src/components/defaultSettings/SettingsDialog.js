@@ -82,7 +82,7 @@ const DialogActions = withStyles((theme) => ({
 
 const storage = window.localStorage;
 
-export default function SettingsDialog() {
+export default function SettingsDialog(props) {
   const [settingsOpen, setSettingsOpen] = React.useState(true);
   const [cdmApiTokenDisabled, setCdmApiTokenState] = React.useState(false);
   const [polarisDevModeDisabled, setPolarisDevModeState] = React.useState(
@@ -105,8 +105,10 @@ export default function SettingsDialog() {
     console.log("CDM API Token Disabled?", cdmApiTokenDisabled);
     console.log("Polaris Dev Mode Disabled?", polarisDevModeDisabled);
     console.log("Default Platform?", defaultPlatform);
+
     storage.setItem("platform", defaultPlatform.toLowerCase());
 
+    props.handleDefaultUpdate(defaultPlatform.toLowerCase());
     setSettingsOpen(false);
   };
 

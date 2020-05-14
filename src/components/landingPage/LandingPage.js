@@ -53,12 +53,18 @@ class LandingPage extends Component {
     this.createLoginHeader = this.createLoginHeader.bind(this);
     this.createDevModeIcon = this.createDevModeIcon.bind(this);
     this.handleModeButton = this.handleModeButton.bind(this);
+    this.handleDefaultUpdate = this.handleDefaultUpdate.bind(this);
   }
 
   componentDidMount() {
+    if (storage.getItem("platform") !== null) {
+      this.setState({
+        formHeader: loginButtonText,
+      });
+    }
     // storage.setItem("platform", "Polaris");
     // console.log(window.localStorage.getItem("platform"));
-    storage.clear();
+    // storage.clear();
   }
 
   handleSwitchToLogin(event) {
@@ -129,6 +135,16 @@ class LandingPage extends Component {
     });
   }
 
+  handleDefaultUpdate(platform) {
+    if (this.state.platform !== platform) {
+      this.setState({
+        platform: platform === "none" ? null : platform,
+      });
+    }
+
+    console.log(this.state.platform);
+  }
+
   handleModeButton() {
     this.setState({
       polarisDomain:
@@ -155,7 +171,7 @@ class LandingPage extends Component {
     return (
       <React.Fragment>
         <div className="landing-page">
-          <SettingsDialog />
+          <SettingsDialog handleDefaultUpdate={this.handleDefaultUpdate} />
           {this.createWelcome()}
 
           {this.createLogin()}

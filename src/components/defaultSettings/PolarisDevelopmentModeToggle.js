@@ -11,7 +11,7 @@ import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const PolarisDevelopmentModeToggle = ({ handlePolarisDevModeState }) => {
-  const [disabled, setDisabledState] = React.useState(true);
+  const [disabled, setDisabledState] = React.useState(false);
 
   const handleToggle = () => () => {
     disabled === true ? setDisabledState(false) : setDisabledState(true);
