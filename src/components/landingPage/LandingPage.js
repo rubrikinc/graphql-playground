@@ -1,16 +1,22 @@
 import React, { Component } from "react";
+
+import SettingsDialog from "../defaultSettings/SettingsDialog";
+
 // App Component related imports
 import "./LandingPage.css";
-import rubrikLogo from "../images/rubrikLogo.svg";
-import LoginForm from "./LoginForm";
-import { validateCredentials, userFiendlyErrorMessage } from "../utils/api";
+import rubrikLogo from "../../images/rubrikLogo.svg";
+import LoginForm from "../loginForm/LoginForm";
+import { validateCredentials, userFiendlyErrorMessage } from "../../utils/api";
+
 // Material-UI related imports
 import CodeIcon from "@material-ui/icons/Code";
 import PersonIcon from "@material-ui/icons/Person";
 import IconButton from "@material-ui/core/IconButton";
+
 import Tooltip from "@material-ui/core/Tooltip";
-import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+
+import { withStyles } from "@material-ui/core/styles";
 
 const selectYourPlatformFormHeader = "Select your Platform";
 const loginButtonText = "Login";
@@ -18,13 +24,24 @@ const connectingToPlatformButtonText = "Attempting to Connect";
 const polarisUserDomain = ".my.rubrik.com";
 const polarisDevDomain = ".dev.my.rubrik-lab.com";
 
+const storage = window.localStorage;
+
+const convertStringToBoolean = (string) => {
+  let bool;
+  string === "false" ? (bool = false) : (bool = true);
+  return bool;
+};
+
 class LandingPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       formHeader: selectYourPlatformFormHeader,
-      platform: null,
+      platform:
+        storage.getItem("platform") === "none"
+          ? null
+          : storage.getItem("platform"),
       loginButtonText: loginButtonText,
       loginErrorMessage: null,
       apiToken: null,
@@ -33,7 +50,12 @@ class LandingPage extends Component {
       password: null,
       cdmApiToken: null,
       polarisDomain: polarisUserDomain,
-      usingCdmApiToken: false,
+      usingCdmApiToken:
+        storage.getItem("cdmApiToken") === null
+          ? false
+          : convertStringToBoolean(storage.getItem("cdmApiToken")),
+
+      settingsOpen: true,
     };
 
     this.createLoginForm = this.createLoginForm.bind(this);
@@ -44,6 +66,23 @@ class LandingPage extends Component {
     this.createLoginHeader = this.createLoginHeader.bind(this);
     this.createDevModeIcon = this.createDevModeIcon.bind(this);
     this.handleModeButton = this.handleModeButton.bind(this);
+    this.handleDefaultUpdate = this.handleDefaultUpdate.bind(this);
+  }
+
+  componentDidMount() {
+    // storage.clear();
+
+    if (storage.getItem("platform") !== null) {
+      this.setState({
+        formHeader: loginButtonText,
+      });
+    }
+
+    if (storage.getItem("polarisDevMode") === "true") {
+      this.setState({
+        polarisDomain: polarisDevDomain,
+      });
+    }
   }
 
   handleSwitchToLogin(event) {
@@ -110,7 +149,26 @@ class LandingPage extends Component {
     this.setState({
       platform: this.state.platform === "polaris" ? "cdm" : "polaris",
       loginErrorMessage: null,
-      usingCdmApiToken: false,
+      // usingCdmApiToken: false,
+    });
+  }
+
+  handleDefaultUpdate(platform, cdmApiToken, polarisDevMode) {
+    if (this.state.platform !== platform) {
+      this.setState({
+        platform: platform === "none" ? null : platform,
+      });
+    }
+
+    if (this.state.usingCdmApiToken !== cdmApiToken) {
+      this.setState({
+        usingCdmApiToken: cdmApiToken,
+      });
+    }
+
+    this.setState({
+      polarisDomain:
+        polarisDevMode === true ? polarisDevDomain : polarisUserDomain,
     });
   }
 
@@ -140,6 +198,7 @@ class LandingPage extends Component {
     return (
       <React.Fragment>
         <div className="landing-page">
+          <SettingsDialog handleDefaultUpdate={this.handleDefaultUpdate} />
           {this.createWelcome()}
 
           {this.createLogin()}

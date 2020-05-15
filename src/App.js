@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import LandingPage from "./components/LandingPage";
-import GraphiQl from "./components/GraphiQl";
+import LandingPage from "./components/landingPage/LandingPage";
+import GraphiQl from "./components/graphiql/GraphiQl";
 
 class App extends Component {
   constructor(props) {

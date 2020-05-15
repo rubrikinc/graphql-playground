@@ -4,7 +4,7 @@
 .welcome-message {
   display: flex;
   flex-direction: column;
-  background-image: url("../images/pattern.png"),
+  background-image: url("../../images/pattern.png"),
     radial-gradient(
       circle at center center,
       rgb(0, 88, 140) 5%,
@@ -134,6 +134,14 @@ a:link {
 .bottom-right {
   position: fixed;
   bottom: 0;
+  right: 0;
+  margin-bottom: 1.023rem;
+  margin-right: 1.023rem;
+}
+
+.top-right {
+  position: fixed;
+  top: 0;
   right: 0;
   margin-bottom: 1.023rem;
   margin-right: 1.023rem;
