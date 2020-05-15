@@ -10,13 +10,24 @@ import CodeIcon from "@material-ui/icons/Code";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-const PolarisDevelopmentModeToggle = ({ handlePolarisDevModeState }) => {
-  const [disabled, setDisabledState] = React.useState(false);
+const storage = window.localStorage;
 
-  const handleToggle = () => () => {
-    disabled === true ? setDisabledState(false) : setDisabledState(true);
-    // console.log(disabled);
-    handlePolarisDevModeState(disabled);
+const convertStringToBoolean = (string) => {
+  let bool;
+  string === "false" ? (bool = false) : (bool = true);
+  return bool;
+};
+
+const PolarisDevelopmentModeToggle = ({ handlePolarisDevModeState }) => {
+  const [state, setState] = React.useState(
+    storage.getItem("polarisDevMode") === null
+      ? false
+      : convertStringToBoolean(storage.getItem("polarisDevMode"))
+  );
+
+  const handleChange = (event) => {
+    setState(event.target.checked);
+    handlePolarisDevModeState(event.target.checked);
   };
 
   return (
@@ -34,8 +45,8 @@ const PolarisDevelopmentModeToggle = ({ handlePolarisDevModeState }) => {
             control={
               <Switch
                 edge="end"
-                onChange={handleToggle()}
-                checked={disabled}
+                onChange={handleChange}
+                checked={state}
                 color="primary"
               />
             }

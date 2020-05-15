@@ -84,11 +84,9 @@ const storage = window.localStorage;
 
 export default function SettingsDialog(props) {
   const [settingsOpen, setSettingsOpen] = React.useState(true);
-  const [cdmApiTokenDisabled, setCdmApiTokenState] = React.useState(false);
-  const [polarisDevModeDisabled, setPolarisDevModeState] = React.useState(
-    false
-  );
-  const [defaultPlatform, setDefaultPlatform] = React.useState("None");
+  const [cdmApiToken, setCdmApiTokenState] = React.useState(false);
+  const [polarisDevMode, setPolarisDevModeState] = React.useState(false);
+  const [defaultPlatform, setDefaultPlatform] = React.useState("none");
 
   const handleSettingsOpen = () => {
     setSettingsOpen(true);
@@ -102,13 +100,12 @@ export default function SettingsDialog(props) {
     event.preventDefault();
     console.log("");
     console.log("Saving Settings....");
-    console.log("CDM API Token Disabled?", cdmApiTokenDisabled);
-    console.log("Polaris Dev Mode Disabled?", polarisDevModeDisabled);
-    console.log("Default Platform?", defaultPlatform);
 
-    storage.setItem("platform", defaultPlatform.toLowerCase());
+    storage.setItem("platform", defaultPlatform);
+    storage.setItem("cdmApiToken", cdmApiToken);
+    storage.setItem("polarisDevMode", polarisDevMode);
 
-    props.handleDefaultUpdate(defaultPlatform.toLowerCase());
+    props.handleDefaultUpdate(defaultPlatform, cdmApiToken, polarisDevMode);
     setSettingsOpen(false);
   };
 

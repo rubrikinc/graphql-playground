@@ -150,7 +150,11 @@ export default function LoginForm(props) {
           type="password"
           onChange={props.onFormChange}
           error={props.cdmApiToken !== null && props.cdmApiToken === ""}
-          style={props.usingCdmApiToken === false ? { display: "none" } : {}}
+          style={
+            props.usingCdmApiToken === false || props.platform === "polaris"
+              ? { display: "none" }
+              : {}
+          }
         />
 
         <TextField
@@ -159,7 +163,11 @@ export default function LoginForm(props) {
           label="Username"
           onChange={props.onFormChange}
           error={props.username !== null && props.username === ""}
-          style={props.usingCdmApiToken === true ? { display: "none" } : {}}
+          style={
+            props.usingCdmApiToken === true && props.platform === "cdm"
+              ? { display: "none" }
+              : {}
+          }
         />
 
         <TextField
@@ -169,7 +177,11 @@ export default function LoginForm(props) {
           type="password"
           onChange={props.onFormChange}
           error={props.password !== null && props.password === ""}
-          style={props.usingCdmApiToken === true ? { display: "none" } : {}}
+          style={
+            props.usingCdmApiToken === true && props.platform === "cdm"
+              ? { display: "none" }
+              : {}
+          }
         />
         {/* TODO: Enable Remember Me functionality */}
         {/* <FormControlLabel

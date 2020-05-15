@@ -26,13 +26,22 @@ const polarisDevDomain = ".dev.my.rubrik-lab.com";
 
 const storage = window.localStorage;
 
+const convertStringToBoolean = (string) => {
+  let bool;
+  string === "false" ? (bool = false) : (bool = true);
+  return bool;
+};
+
 class LandingPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       formHeader: selectYourPlatformFormHeader,
-      platform: storage.getItem("platform"),
+      platform:
+        storage.getItem("platform") === "none"
+          ? null
+          : storage.getItem("platform"),
       loginButtonText: loginButtonText,
       loginErrorMessage: null,
       apiToken: null,
@@ -41,7 +50,11 @@ class LandingPage extends Component {
       password: null,
       cdmApiToken: null,
       polarisDomain: polarisUserDomain,
-      usingCdmApiToken: false,
+      usingCdmApiToken:
+        storage.getItem("cdmApiToken") === null
+          ? false
+          : convertStringToBoolean(storage.getItem("cdmApiToken")),
+
       settingsOpen: true,
     };
 
@@ -57,14 +70,13 @@ class LandingPage extends Component {
   }
 
   componentDidMount() {
+    // storage.clear();
+
     if (storage.getItem("platform") !== null) {
       this.setState({
         formHeader: loginButtonText,
       });
     }
-    // storage.setItem("platform", "Polaris");
-    // console.log(window.localStorage.getItem("platform"));
-    // storage.clear();
   }
 
   handleSwitchToLogin(event) {
@@ -131,18 +143,26 @@ class LandingPage extends Component {
     this.setState({
       platform: this.state.platform === "polaris" ? "cdm" : "polaris",
       loginErrorMessage: null,
-      usingCdmApiToken: false,
+      // usingCdmApiToken: false,
     });
   }
 
-  handleDefaultUpdate(platform) {
+  handleDefaultUpdate(platform, cdmApiToken, polarisDevMode) {
+    console.log("Handle Default Update Function");
+    console.log(cdmApiToken);
+
     if (this.state.platform !== platform) {
       this.setState({
         platform: platform === "none" ? null : platform,
       });
     }
 
-    console.log(this.state.platform);
+    if (this.state.usingCdmApiToken !== cdmApiToken) {
+      this.setState({
+        usingCdmApiToken: cdmApiToken,
+      });
+      console.log(this.state.usingCdmApiToken);
+    }
   }
 
   handleModeButton() {

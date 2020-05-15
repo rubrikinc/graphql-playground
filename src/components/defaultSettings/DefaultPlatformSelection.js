@@ -27,8 +27,6 @@ const DefaultPlatform = ({ handleDefaultPlatform }) => {
   const [platform, setPlatform] = React.useState(
     storage.getItem("platform") === null ? "none" : storage.getItem("platform")
   );
-  console.log("Platform");
-  console.log(platform);
 
   const handleChange = (event) => {
     setPlatform(event.target.value);

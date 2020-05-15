@@ -11,12 +11,24 @@ import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import Switch from "@material-ui/core/Switch";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-const CdmApiTokenToggle = ({ handleCdmApiTokenState }) => {
-  const [disabled, setDisabledState] = React.useState(false);
+const storage = window.localStorage;
 
-  const handleToggle = () => () => {
-    disabled === true ? setDisabledState(false) : setDisabledState(true);
-    handleCdmApiTokenState(disabled);
+const convertStringToBoolean = (string) => {
+  let bool;
+  string === "false" ? (bool = false) : (bool = true);
+  return bool;
+};
+
+const CdmApiTokenToggle = ({ handleCdmApiTokenState }) => {
+  const [state, setState] = React.useState(
+    storage.getItem("cdmApiToken") === null
+      ? false
+      : convertStringToBoolean(storage.getItem("cdmApiToken"))
+  );
+
+  const handleChange = (event) => {
+    setState(event.target.checked);
+    handleCdmApiTokenState(event.target.checked);
   };
 
   return (
@@ -33,9 +45,10 @@ const CdmApiTokenToggle = ({ handleCdmApiTokenState }) => {
           <FormControlLabel
             control={
               <Switch
+                name="cdmApiToken"
                 edge="end"
-                onChange={handleToggle()}
-                checked={disabled}
+                onChange={handleChange}
+                checked={state}
                 color="primary"
               />
             }
