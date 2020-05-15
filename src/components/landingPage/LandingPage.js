@@ -77,6 +77,12 @@ class LandingPage extends Component {
         formHeader: loginButtonText,
       });
     }
+
+    if (storage.getItem("polarisDevMode") === "true") {
+      this.setState({
+        polarisDomain: polarisDevDomain,
+      });
+    }
   }
 
   handleSwitchToLogin(event) {
@@ -148,9 +154,6 @@ class LandingPage extends Component {
   }
 
   handleDefaultUpdate(platform, cdmApiToken, polarisDevMode) {
-    console.log("Handle Default Update Function");
-    console.log(cdmApiToken);
-
     if (this.state.platform !== platform) {
       this.setState({
         platform: platform === "none" ? null : platform,
@@ -161,8 +164,12 @@ class LandingPage extends Component {
       this.setState({
         usingCdmApiToken: cdmApiToken,
       });
-      console.log(this.state.usingCdmApiToken);
     }
+
+    this.setState({
+      polarisDomain:
+        polarisDevMode === true ? polarisDevDomain : polarisUserDomain,
+    });
   }
 
   handleModeButton() {

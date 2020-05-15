@@ -27,6 +27,7 @@ const PolarisDevelopmentModeToggle = ({ handlePolarisDevModeState }) => {
 
   const handleChange = (event) => {
     setState(event.target.checked);
+
     handlePolarisDevModeState(event.target.checked);
   };
 
