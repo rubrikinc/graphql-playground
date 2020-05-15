@@ -6,7 +6,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
 import InputAdornment from "@material-ui/core/InputAdornment";
-import "../components/LandingPage.css";
+import "../../components/landingPage/LandingPage.css";
 
 const useStylesForm = makeStyles((theme) => ({
   root: {
@@ -63,8 +63,9 @@ export default function LoginForm(props) {
   const classesLoginButton = useStylesLoginButton();
 
   function diableLoginButton() {
-    // This function controls whether or not the field button is disabled.
-    // The logic is super ugly and can be cleaned up but it works
+    // TODO: This function controls whether or not the LOGIN button is disabled.
+    // The logic is super super ugly and can be cleaned up but it works
+
     if (props.usingCdmApiToken === false) {
       if (
         props.ip === null ||
@@ -95,23 +96,54 @@ export default function LoginForm(props) {
         return true;
       }
     } else {
-      if (props.ip === null || props.cdmApiToken === null) {
-        return true;
-      }
-      if (props.ip !== null) {
-        if (props.ip.length <= 0) {
+      if (props.platform === "polaris") {
+        if (
+          props.ip === null ||
+          props.username === null ||
+          props.password === null
+        ) {
           return true;
         }
-      }
+        if (props.ip !== null) {
+          if (props.ip.length <= 0) {
+            return true;
+          }
+        }
 
-      if (props.cdmApiToken !== null) {
-        if (props.cdmApiToken.length <= 0) {
+        if (props.username !== null) {
+          if (props.username.length <= 0) {
+            return true;
+          }
+        }
+
+        if (props.password !== null) {
+          if (props.password.length <= 0) {
+            return true;
+          }
+        }
+
+        if (props.loginButtonText !== "Login") {
           return true;
         }
-      }
+      } else {
+        if (props.ip === null || props.cdmApiToken === null) {
+          return true;
+        }
+        if (props.ip !== null) {
+          if (props.ip.length <= 0) {
+            return true;
+          }
+        }
 
-      if (props.loginButtonText !== "Login") {
-        return true;
+        if (props.cdmApiToken !== null) {
+          if (props.cdmApiToken.length <= 0) {
+            return true;
+          }
+        }
+
+        if (props.loginButtonText !== "Login") {
+          return true;
+        }
       }
     }
   }
@@ -150,7 +182,11 @@ export default function LoginForm(props) {
           type="password"
           onChange={props.onFormChange}
           error={props.cdmApiToken !== null && props.cdmApiToken === ""}
-          style={props.usingCdmApiToken === false ? { display: "none" } : {}}
+          style={
+            props.usingCdmApiToken === false || props.platform === "polaris"
+              ? { display: "none" }
+              : {}
+          }
         />
 
         <TextField
@@ -159,7 +195,11 @@ export default function LoginForm(props) {
           label="Username"
           onChange={props.onFormChange}
           error={props.username !== null && props.username === ""}
-          style={props.usingCdmApiToken === true ? { display: "none" } : {}}
+          style={
+            props.usingCdmApiToken === true && props.platform === "cdm"
+              ? { display: "none" }
+              : {}
+          }
         />
 
         <TextField
@@ -169,7 +209,11 @@ export default function LoginForm(props) {
           type="password"
           onChange={props.onFormChange}
           error={props.password !== null && props.password === ""}
-          style={props.usingCdmApiToken === true ? { display: "none" } : {}}
+          style={
+            props.usingCdmApiToken === true && props.platform === "cdm"
+              ? { display: "none" }
+              : {}
+          }
         />
         {/* TODO: Enable Remember Me functionality */}
         {/* <FormControlLabel

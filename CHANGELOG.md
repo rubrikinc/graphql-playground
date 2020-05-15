@@ -14,8 +14,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * **Fixed** for any bug fixes.
 * **Security** in case of vulnerabilities.
 
-## Unreleased
+## v2.0.1
 
 ### Added
 
-* Added the ability to authenticate against a CDM cluster using an API Token. [Issue 17](https://github.com/rubrikinc/graphql-playground/issues/17) 
+* Authenticate against a CDM cluster using an API Token. [Issue 17](https://github.com/rubrikinc/graphql-playground/issues/17) 
+* Allow the end user to save application defaults [Issue 21](https://github.com/rubrikinc/graphql-playground/issues/21)
+
+## Unreleased
+
