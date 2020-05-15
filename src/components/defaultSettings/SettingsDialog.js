@@ -98,14 +98,10 @@ export default function SettingsDialog(props) {
 
   const handleSaveSettings = (event) => {
     event.preventDefault();
-    console.log("");
-    console.log("Saving Settings....");
 
     storage.setItem("platform", defaultPlatform);
     storage.setItem("cdmApiToken", cdmApiToken);
     storage.setItem("polarisDevMode", polarisDevMode);
-    console.log("Polaris Dev Mode");
-    console.log(storage.getItem("polarisDevMode"));
 
     props.handleDefaultUpdate(defaultPlatform, cdmApiToken, polarisDevMode);
     setSettingsOpen(false);
