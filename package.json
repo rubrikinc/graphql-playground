@@ -75,9 +75,9 @@
     "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
     "preelectron-pack": "yarn build",
-    "dist-clean": "rm -rf ./release ./dist",
-    "electron-pack": "npm run dist-clean && electron-builder",
-    "electron-release": "npm run dist-clean && electron-builder --mac --linux --win"
+    "dist-clean": "rm -rf ./release",
+    "electron-pack": "npm run dist-clean && npm run build && electron-builder",
+    "electron-release": "npm run dist-clean && npm run build && electron-builder --mac --linux --win"
   },
   "eslintConfig": {
     "extends": "react-app"
