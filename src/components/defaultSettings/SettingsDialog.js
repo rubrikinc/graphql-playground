@@ -17,6 +17,7 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import CdmApiTokenToggle from "./CdmApiTokenToggle";
 import PolarisDevelopmentModeToggle from "./PolarisDevelopmentModeToggle";
 import DefaultPlatformSelection from "./DefaultPlatformSelection";
+import PolarisDevelopmentDevDomain from "./PolarisDevelopmentDevDomain";
 
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
@@ -87,6 +88,7 @@ export default function SettingsDialog(props) {
   const [cdmApiToken, setCdmApiTokenState] = React.useState(false);
   const [polarisDevMode, setPolarisDevModeState] = React.useState(false);
   const [defaultPlatform, setDefaultPlatform] = React.useState("none");
+  const [defaultDevDomain, setDefaultDevDomain] = React.useState("dev");
 
   const handleSettingsOpen = () => {
     setSettingsOpen(true);
@@ -102,8 +104,14 @@ export default function SettingsDialog(props) {
     storage.setItem("platform", defaultPlatform);
     storage.setItem("cdmApiToken", cdmApiToken);
     storage.setItem("polarisDevMode", polarisDevMode);
+    storage.setItem("polarisDevDomain", defaultDevDomain);
 
-    props.handleDefaultUpdate(defaultPlatform, cdmApiToken, polarisDevMode);
+    props.handleDefaultUpdate(
+      defaultPlatform,
+      cdmApiToken,
+      polarisDevMode,
+      defaultDevDomain
+    );
     setSettingsOpen(false);
   };
 
@@ -128,6 +136,10 @@ export default function SettingsDialog(props) {
 
   const handleDefaultPlatform = (platform) => {
     setDefaultPlatform(platform);
+  };
+
+  const handlePolarisDevDomain = (domain) => {
+    setDefaultDevDomain(domain);
   };
 
   const settingsDialog = () => {
@@ -160,6 +172,9 @@ export default function SettingsDialog(props) {
                 />
                 <PolarisDevelopmentModeToggle
                   handlePolarisDevModeState={handlePolarisDevModeState}
+                />
+                <PolarisDevelopmentDevDomain
+                  handlePolarisDevDomain={handlePolarisDevDomain}
                 />
               </DialogContent>
             </ThemeProvider>
