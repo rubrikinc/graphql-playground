@@ -15,7 +15,7 @@ import DesktopMacIcon from "@material-ui/icons/DesktopMac";
 // Used to format the Select dropdown
 const useStyles = makeStyles(() => ({
   formControl: {
-    minWidth: 100,
+    minWidth: 150,
     marginRight: 20,
   },
 }));
