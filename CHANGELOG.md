@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * **Fixed** for any bug fixes.
 * **Security** in case of vulnerabilities.
 
+## Unreleased
+
+### Added
+
+* Specify custom Polaris development domains. [Issue 23](https://github.com/rubrikinc/graphql-playground/issues/23) 
+
 ## v2.0.1
 
 ### Added
