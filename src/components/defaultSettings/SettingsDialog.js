@@ -105,7 +105,6 @@ export default function SettingsDialog(props) {
     storage.setItem("cdmApiToken", cdmApiToken);
     storage.setItem("polarisDevMode", polarisDevMode);
     storage.setItem("polarisDevDomain", defaultDevDomain);
-
     props.handleDefaultUpdate(
       defaultPlatform,
       cdmApiToken,

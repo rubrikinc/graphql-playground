@@ -22,8 +22,6 @@ const selectYourPlatformFormHeader = "Select your Platform";
 const loginButtonText = "Login";
 const connectingToPlatformButtonText = "Attempting to Connect";
 const polarisUserDomain = ".my.rubrik.com";
-const polarisDevDomain = ".dev.my.rubrik-lab.com";
-
 const storage = window.localStorage;
 
 const convertStringToBoolean = (string) => {
@@ -50,6 +48,10 @@ class LandingPage extends Component {
       password: null,
       cdmApiToken: null,
       polarisDomain: polarisUserDomain,
+      polarisDevDomain:
+        storage.getItem("polarisDevDomain") === null
+          ? ".dev.my.rubrik-lab.com"
+          : `.${storage.getItem("polarisDevDomain")}.my.rubrik-lab.com`,
       usingCdmApiToken:
         storage.getItem("cdmApiToken") === null
           ? false
@@ -80,7 +82,7 @@ class LandingPage extends Component {
 
     if (storage.getItem("polarisDevMode") === "true") {
       this.setState({
-        polarisDomain: polarisDevDomain,
+        polarisDomain: this.state.polarisDevDomain,
       });
     }
   }
@@ -153,7 +155,7 @@ class LandingPage extends Component {
     });
   }
 
-  handleDefaultUpdate(platform, cdmApiToken, polarisDevMode) {
+  handleDefaultUpdate(platform, cdmApiToken, polarisDevMode, polarisDevDomain) {
     if (this.state.platform !== platform) {
       this.setState({
         platform: platform === "none" ? null : platform,
@@ -168,15 +170,33 @@ class LandingPage extends Component {
 
     this.setState({
       polarisDomain:
-        polarisDevMode === true ? polarisDevDomain : polarisUserDomain,
+        polarisDevMode === true
+          ? this.state.polarisDevDomain
+          : polarisUserDomain,
     });
+
+    this.setState({
+      polarisDomain:
+        this.state.polarisDomain === polarisUserDomain
+          ? this.state.polarisDevDomain
+          : polarisUserDomain,
+    });
+
+    if (
+      this.state.polarisDevDomain !== `.${polarisDevDomain}.my.rubrik-lab.com`
+    ) {
+      this.setState({
+        polarisDomain: `.${polarisDevDomain}.my.rubrik-lab.com`,
+        polarisDevDomain: `.${polarisDevDomain}.my.rubrik-lab.com`,
+      });
+    }
   }
 
   handleModeButton() {
     this.setState({
       polarisDomain:
         this.state.polarisDomain === polarisUserDomain
-          ? polarisDevDomain
+          ? this.state.polarisDevDomain
           : polarisUserDomain,
     });
   }
