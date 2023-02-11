@@ -109,7 +109,7 @@
     "@rescripts/rescript-env": "^0.0.5",
     "concurrently": "^4.1.2",
     "electron": "^4.2.12",
-    "electron-builder": "^22.5.1",
+    "electron-builder": "^23.6.0",
     "electron-notarize": "^0.3.0",
     "electron-packager": "^12.2.0",
     "typescript": "^3.8.3",
