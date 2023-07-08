@@ -101,7 +101,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
-    "react-scripts": "2.1.5",
+    "react-scripts": "5.0.1",
     "update-electron-app": "^1.5.0"
   },
   "devDependencies": {
@@ -113,6 +113,6 @@
     "electron-notarize": "^0.3.0",
     "electron-packager": "^12.2.0",
     "typescript": "^3.8.3",
-    "wait-on": "^3.3.0"
+    "wait-on": "^7.0.1"
   }
 }
